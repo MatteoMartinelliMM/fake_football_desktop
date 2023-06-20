@@ -1,0 +1,302 @@
+{
+  "currentIndex": 20,
+  "1_miark": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "name": "Miark",
+    "number": 3,
+    "ruoli": {
+      "0": "dc",
+      "1": "cc",
+      "2": "ala"
+    }
+  },
+  "2_scarse": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "ruoli": {
+      "1": "ala",
+      "0": "dc"
+    },
+    "name": "Scarse",
+    "number": 4
+  },
+  "3_ade": {
+    "andatoAlBarettoMatch": 0,
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "goalMatch": 0,
+    "mvp": 0,
+    "name": "Ade",
+    "number": 5,
+    "violenzaFattaMatch": 0,
+    "ruoli": {
+      "1": "ala",
+      "0": "dc"
+    }
+  },
+  "4_sandro": {
+    "appearances": 0,
+    "assist": 0,
+    "assistMatch": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "goalMatch": 0,
+    "mvp": 0,
+    "name": "Sandro",
+    "number": 6,
+    "ruoli": {
+      "0": "ala",
+      "1": "dc"
+    }
+  },
+  "5_feb": {
+    "appearances": 0,
+    "assist": 0,
+    "assistMatch": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "goalMatch": 0,
+    "name": "Feb",
+    "number": 7,
+    "ruoli": {
+      "0": "att",
+      "1": "ala",
+      "2": "cc"
+    },
+    "rigoriSegnatiMatch": 0,
+    "rigoriTiratiMatch": 0,
+    "violenzaFattaMatch": 0,
+    "violenzaSubitaMatch": 0
+  },
+  "6_teo": {
+    "appearances": 0,
+    "assist": 0,
+    "assistMatch": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "goalMatch": 0,
+    "name": "Teo",
+    "ruoli": {
+      "0": "cc",
+      "1": "ala",
+      "2": "att"
+    },
+    "number": 8
+  },
+  "7_mik": {
+    "appearances": 0,
+    "assist": 0,
+    "assistMatch": 0,
+    "fail": 0,
+    "falli": 0,
+    "ruoli": {
+      "0": "att",
+      "1": "dc",
+      "2": "ala"
+    },
+    "goal": 0,
+    "name": "Mik",
+    "number": 9
+  },
+  "8_gio": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "ruoli": {
+      "0": "att",
+      "1": "ala"
+    },
+    "name": "Gio",
+    "number": 10
+  },
+  "9_vale": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "name": "Vale",
+    "ruoli": {
+      "0": "att",
+      "1": "dc"
+    },
+    "number": 16
+  },
+  "10_ivan": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "ruoli": {
+      "2": "ala",
+      "1": "att",
+      "0": "cc"
+    },
+    "name": "Ivan",
+    "number": 17
+  },
+  "11_andrew": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "ruoli": {
+      "0": "ala"
+    },
+    "mandatiAlBarettoMatch": 0,
+    "mvp": 0,
+    "name": "Andrew",
+    "number": 18
+  },
+  "12_andre": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "ruoli": {
+      "0": "ala",
+      "1": "dc"
+    },
+    "mandatiAlBarettoMatch": 0,
+    "mvp": 0,
+    "name": "Andre",
+    "number": 19
+  },
+  "13_carmine": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "name": "Carmine",
+    "ruoli": {
+      "1": "ala",
+      "0": "dc"
+    },
+    "number": 21,
+    "papereCommesseMatch": 0,
+    "violenzaFattaMatch": 0,
+    "violenzaSubitaMatch": 0
+  },
+  "14_gabry": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "ruoli": {
+      "0": "ala",
+      "1": "cc"
+    },
+    "name": "Gabry",
+    "number": 22
+  },
+  "15_frenk": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "ruoli": {
+      "0": "cc",
+      "1": "dc",
+      "2": "ala",
+      "3": "att"
+    },
+    "name": "Frenk",
+    "number": 23
+  },
+  "16_mauri": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "goalMatch": 0,
+    "mvp": 0,
+    "ruoli": {
+      "0": "cc",
+      "1": "ala",
+      "2": "att"
+    },
+    "name": "Mauri",
+    "number": 27,
+    "quasiGoalMatch": 0,
+    "rigoriSegnatiMatch": 0,
+    "rigoriTiratiMatch": 0,
+    "violenzaSubitaMatch": 0
+  },
+  "17_magna": {
+    "appearances": 0,
+    "assist": 0,
+    "assistMatch": 0,
+    "fail": 0,
+    "falli": 0,
+    "ruoli": {
+      "0": "cc",
+      "1": "ala",
+      "2": "dc"
+    },
+    "goal": 0,
+    "mvp": 0,
+    "name": "Magna",
+    "number": 30
+  },
+  "18_dad": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "ruoli": {
+      "0": "att",
+      "1": "ala"
+    },
+    "name": "Dad",
+    "number": 68
+  },
+  "19_albi": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "goal": 0,
+    "ruoli": {
+      "0": "ala",
+      "1": "cc"
+    },
+    "mvp": 0,
+    "name": "Albi",
+    "number": 71
+  },
+  "20_alecormi": {
+    "appearances": 0,
+    "assist": 0,
+    "fail": 0,
+    "falli": 0,
+    "ruoli": {
+      "0": "ala"
+    },
+    "goal": 0,
+    "name": "Alecormi",
+    "number": 93
+  }
+}
