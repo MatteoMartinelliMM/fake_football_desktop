@@ -38,3 +38,8 @@ class TeamConfifermedEvent extends TeamMakingEvent {}
 class RiepilogoPresentiEvent extends TeamMakingEvent {}
 
 class TeamMakingShuffleEvent extends TeamMakingEvent {}
+
+class PageChangeEvent extends TeamMakingEvent {
+  int page;
+  PageChangeEvent(this.page);
+}

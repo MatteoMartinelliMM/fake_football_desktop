@@ -1,13 +1,14 @@
 // ignore_for_file: curly_braces_in_flow_control_structures, avoid_function_literals_in_foreach_calls
 
+import 'dart:async';
 import 'dart:io' show Platform;
 import 'dart:math';
 
 import 'package:fake_football_desktop/bloc/team_making/team_making_event.dart';
 import 'package:fake_football_desktop/bloc/team_making/team_making_state.dart';
+import 'package:fake_football_desktop/utils/constants.dart';
 import 'package:fake_football_desktop/model/player.dart';
 import 'package:fake_football_desktop/repository/player_repository.dart';
-import 'package:fake_football_desktop/utils/constants.dart';
 import 'package:fake_football_desktop/utils/ext.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +20,11 @@ class TeamMakingBloc extends Bloc<TeamMakingEvent, TeamMakingState> {
   List<Player> gialliRandom = [];
   List<Player> verdiRandom = [];
   Map<int, Player> gialliByNumbers = {}, verdiByNumbers = {};
-  int _playerAmount = 7, _currentTab = 0;
+  int _playerAmount = 7, _currentTab = 0, _currentPage = 1;
+
+  Stream<int> get pageChanger => _pageChanger.stream;
+
+  final StreamController<int> _pageChanger = StreamController<int>.broadcast();
 
   TeamMakingBloc({required this.playerRepository}) : super(LoadingPlayersState()) {
     on<LoadPlayersEvent>(_mapOnLoadPlayerEvent);
@@ -31,6 +36,7 @@ class TeamMakingBloc extends Bloc<TeamMakingEvent, TeamMakingState> {
     on<TeamMakingShuffleEvent>(_mapTeamMakingShuffleEvent);
     on<TeamMakingDisposeEvent>(_mapDisposeEvent);
     on<TabChangeEvent>(_mapTabChangeEvent);
+    on<PageChangeEvent>(_mapPageChangeEvent);
   }
 
   void _mapSoccerModeChangeEvent(SoccerModeChangeEvent event, Emitter<TeamMakingState> emit) async {
@@ -91,7 +97,6 @@ class TeamMakingBloc extends Bloc<TeamMakingEvent, TeamMakingState> {
 
   void _emitStateDependsOnTeamFulled(Emitter<TeamMakingState> emit) {
     if (gialliByNumbers.length < _playerAmount || verdiByNumbers.length < _playerAmount) {
-
       emit(PlayersLoadedState()
         ..currentTab = _currentTab
         ..players = allPlayers
@@ -216,10 +221,18 @@ class TeamMakingBloc extends Bloc<TeamMakingEvent, TeamMakingState> {
     emit(RiepilogoCopiedState('Squadre generate casualmente!'));
   }
 
+  void _mapPageChangeEvent(PageChangeEvent event, Emitter<TeamMakingState> emit) async {
+    if (_currentPage < event.page && event.page > 1) _currentTab = 1;
+    if (_currentPage > event.page && event.page <= 1) _currentTab = 0;
+    _currentPage = event.page;
+    _emitStateDependsOnTeamFulled(emit);
+  }
+
   void _mapTabChangeEvent(TabChangeEvent event, Emitter<TeamMakingState> emit) async {
     if (event.tab != _currentTab) {
       _currentTab = event.tab;
       _emitStateDependsOnTeamFulled(emit);
+      _pageChanger.sink.add(_currentTab == 1 ? 2 : -1);
     }
   }
 

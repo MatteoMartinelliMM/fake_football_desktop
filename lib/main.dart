@@ -27,12 +27,14 @@ import 'package:fake_football_desktop/utils/route_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:desktop_window/desktop_window.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   PathProvider();
   TrackingDatabase();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+//  DesktopWindow.toggleFullScreen();
   runApp(MyApp());
 }
 
@@ -43,6 +45,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   // DesktopWindow.setMaxWindowSize(
+     //   Size(MediaQuery.of(context).size.width * 0.66, MediaQuery.of(context).size.height * 0.66));
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
@@ -119,4 +123,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

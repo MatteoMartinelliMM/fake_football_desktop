@@ -84,56 +84,6 @@ class _TeamMakingWidgetState extends State<TeamMakingWidget> {
                     },
                   ),
                 ],
-                /*bottom: TabBar(
-                  tabs: [
-                    Tab(
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.circle_outlined,
-                              color: Colors.black87,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                GIALLI,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(color: Colors.black87),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Tab(
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.circle,
-                              color: Colors.green.shade500,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                VERDI,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(color: Colors.black87),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),*/
               ),
               body: _buildBody(context, state),
               bottomNavigationBar: BottomNavigationBar(
@@ -155,9 +105,7 @@ class _TeamMakingWidgetState extends State<TeamMakingWidget> {
                 ],
                 currentIndex:
                     state is TeamsFulledState || state is PlayersLoadedState ? state.currentTab : 0,
-                onTap: (tab) {
-                  context.read<TeamMakingBloc>().add(TabChangeEvent(tab));
-                },
+                onTap: (tab) => context.read<TeamMakingBloc>().add(TabChangeEvent(tab)),
               ),
               floatingActionButton: Visibility(
                 visible: state is TeamsFulledState,
@@ -225,10 +173,9 @@ class _TeamMakingWidgetState extends State<TeamMakingWidget> {
 
   Widget _teamBody(BuildContext context, TeamMakingState state, {bool isYellow = true}) {
     state is PlayersLoadedState ? state : state as TeamsFulledState;
-    List<Player> currentTeam =
-        isYellow ? state.gialli.values.toList() : state.verdi.values.toList();
-    List<Player> oppositTeam =
-        isYellow ? state.verdi.values.toList() : state.gialli.values.toList();
+    List<Player> gialli = state.gialli.values.toList();
+    List<Player> verdi = state.verdi.values.toList();
+    List<Player> currentTeam = isYellow ? gialli : verdi;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -254,8 +201,46 @@ class _TeamMakingWidgetState extends State<TeamMakingWidget> {
         ),
         Expanded(
           child: PageView(
+            onPageChanged: (page) => context.read<TeamMakingBloc>().add(PageChangeEvent(page)),
             controller: _pageController,
-            children: _buildPageView(context, state, oppositTeam, isYellow),
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: playersList(
+                          context,
+                          state.players.where((p) => !verdi.toList().contains(p)).toList(),
+                          isYellow),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: rookieList(context, state.gialli,
+                          state.rookies.where((p) => !verdi.contains(p)).toList(), isYellow),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: playersList(context,
+                          state.players.where((p) => !gialli.contains(p)).toList(), isYellow),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: rookieList(context, state.gialli,
+                          state.rookies.where((p) => !gialli.contains(p)).toList(), isYellow),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ],
@@ -354,10 +339,20 @@ class _TeamMakingWidgetState extends State<TeamMakingWidget> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    context.read<TeamMakingBloc>().pageChanger.listen(
+          (event) => _pageController.animateToPage(event.abs(),
+              duration: const Duration(milliseconds: 600),
+              curve: event.isNegative ? Curves.easeIn : Curves.easeOut),
+        );
+  }
+
+  @override
   void initState() {
     super.initState();
     context.read<TeamMakingBloc>().add(LoadPlayersEvent());
-    _pageController = PageController(initialPage: 0);
+    _pageController = PageController(initialPage: 1);
   }
 
   String _getSpinnerValue(Player currentRookie, Map<int, Player> playersByNumber, bool isYellow) {
@@ -366,15 +361,5 @@ class _TeamMakingWidgetState extends State<TeamMakingWidget> {
             playersByNumber[currentRookie.number] == currentRookie
         ? currentRookie.number.toString()
         : NON_CONVOCATO;
-  }
-
-  List<Widget> _buildPageView(
-      BuildContext context, TeamMakingState state, List<Player> oppositTeam, bool isYellow) {
-    List<Widget> list = [];
-    list.add(playersList(
-        context, state.players.where((p) => !oppositTeam.contains(p)).toList(), isYellow));
-    list.add(rookieList(context, isYellow ? state.gialli : state.verdi,
-        state.rookies.where((p) => !oppositTeam.contains(p)).toList(), isYellow));
-    return list;
   }
 }
