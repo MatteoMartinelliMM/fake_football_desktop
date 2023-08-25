@@ -57,11 +57,10 @@ class SettingsWidgetState extends State<SettingsWidget> {
             case PickExeState:
               state as PickExeState;
               FilePicker.platform.pickFiles(
-                  dialogTitle: state.contentKey.replaceAll('_', ' ').capitalize(),
-                  type: FileType.custom,
-                  allowedExtensions: [
-                    'exe'
-                  ]).then((value) => context
+                dialogTitle: state.contentKey.replaceAll('_', ' ').capitalize(),
+                type: FileType.custom,
+                allowedExtensions: ['exe'],
+              ).then((value) => context
                   .read<SettingsBloc>()
                   .add(PickPathEvent(state.contentKey, value?.paths.firstOrNull())));
               break;
